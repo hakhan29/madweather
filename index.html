@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>날씨가 미쳤다!!!!!!</title>
+    <style type="text/css">
+        body { margin: 0; padding: 0}
+
+        h2{text-align: center; font-size: 11rem; margin: 0; padding-top: 70px;}
+        button{font-size: 1.6rem; background: white; padding: 10px;}
+        #title{background-color: #FF4545; color: white;}
+        #sumleft1, #sumleft2, #sumright1, #sumright2 {
+            width: 100vw;
+            height: 20vh;
+        }
+        #sumleft1 {
+            background: url('sumbg1.png');
+            background-size: 30vw auto;
+            animation: shiftleft 1.5s infinite linear;
+        }
+        #sumleft2 {
+            background: url('sumbg4.png');
+            background-size: 35vw auto;
+            animation: shiftleft 2s infinite linear;
+        }
+        #sumright1 {
+            background: url('sumbg2.png');
+            background-size: 25vw auto;
+            animation: shiftright 3s infinite linear;
+        }
+        #sumright2 {
+            background: url('sumbg3.png');
+            background-size: 30vw auto;
+            animation: shiftright 2s infinite linear;
+        }
+
+        @keyframes shiftleft {
+            from { background-position: 0 0; }
+            to { background-position: -50vw 0; }
+        }
+        @keyframes shiftright {
+            from { background-position: 0 0; }
+            to { background-position: 50vw 0; }
+        }
+
+        .b {
+            position: absolute; left:20%; top: 75%;
+        }
+        .b2 {
+            position: absolute; right:20%;top: 75%;
+        }
+    </style>
+</head>
+<body>
+	<h2 id=title><i>날씨가 미쳤다!!!!!!!!1</i></h2>
+    <div class="b"><button id="but">가을아 와라!!!!11!!1</button></div>
+    <div class="b2"><button id="but2">그냥 여름을 즐기기</button></div>
+    <div id="sumleft1"></div>
+    <div id="sumright1"></div>
+    <div id="sumleft2"></div>
+    <div id="sumright2"></div>
+    <audio  id="summerSound"src="sum.wav" ></audio>
+    <audio  id="winterSound"src="win.mp3" ></audio>
+
+    <script type="text/javascript">
+        var state = "summer";
+        let playstate = "stop"
+        var but = document.getElementById('but');
+        
+        var sumleft1 = document.getElementById('sumleft1');
+        var sumleft2 = document.getElementById('sumleft2');
+        var sumright1 = document.getElementById('sumright1');
+        var sumright2 = document.getElementById('sumright2');
+
+        var summerSound = document.getElementById('summerSound');
+        var winterSound = document.getElementById('winterSound');
+
+        
+
+        but.onclick = function() {
+            if (state == "summer") {
+                but.innerHTML = "봄아 와라!!@!1@!!";
+                but2.innerHTML = "그냥 겨울을 즐기기";
+                sumleft1.style.backgroundImage = "url('winbg1.png')";
+                sumleft2.style.backgroundImage = "url('winbg3.png')";
+                sumright1.style.backgroundImage = "url('winbg2.png')";
+                sumright2.style.backgroundImage = "url('winbg4.png')";
+                title.style.background = "#45AEFF"
+
+               
+                state = "winter";
+            }
+
+             else if (state == "winter") {
+                but.innerHTML = "가을아 와라!!!!11!!1";
+                but2.innerHTML = "그냥 여름을 즐기기";
+                sumleft1.style.backgroundImage = "url('sumbg1.png')";
+                sumleft2.style.backgroundImage = "url('sumbg4.png')";
+                sumright1.style.backgroundImage = "url('sumbg2.png')";
+                sumright2.style.backgroundImage = "url('sumbg3.png')";
+                title.style.background = "#FF4545"
+
+               
+                state = "summer";
+            }
+        };
+
+        but2.onclick = function() {
+            if (state == "summer") {
+                if (summerSound.paused) {
+                   
+                    summerSound.play();
+                    but2.innerHTML="그만 즐기기"
+                } else {
+                    
+                    summerSound.pause();
+                    but2.innerHTML="그냥 여름을 즐기기"
+                }
+                
+                winterSound.pause();
+                winterSound.currentTime = 0; 
+            } else if (state == "winter") {
+                if (winterSound.paused) {
+                    
+                    winterSound.play();
+                    but2.innerHTML="그만 즐기기"
+                } else {
+                   
+                    winterSound.pause();
+                     but2.innerHTML="그냥 겨울을 즐기기"
+                }
+               
+                summerSound.pause();
+                summerSound.currentTime = 0; 
+            }
+        };
+    </script>
+</body>
+</html>
